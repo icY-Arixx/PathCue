@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urban-mobility-rag-agent"
+version = "0.1.0"
+description = "A traceable hybrid RAG and MCP agent for urban mobility and spatial knowledge"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Aris Xu", email = "acexbr@outlook.com"}]
+dependencies = []
+
+[project.optional-dependencies]
+documents = ["python-docx>=1.1", "pypdf>=5.0", "reportlab>=4.0"]
+embeddings = ["model2vec>=0.9"]
+api = ["fastapi>=0.115", "uvicorn[standard]>=0.30", "pydantic>=2.8"]
+agent = ["langgraph>=1.0", "mcp[cli]>=1.0"]
+milvus = ["pymilvus>=3.0"]
+dev = ["pytest>=8.0", "ruff>=0.9"]
+all = [
+  "python-docx>=1.1", "pypdf>=5.0", "reportlab>=4.0", "model2vec>=0.9",
+  "fastapi>=0.115", "uvicorn[standard]>=0.30", "pydantic>=2.8",
+  "langgraph>=1.0", "mcp[cli]>=1.0", "pymilvus>=2.5",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140

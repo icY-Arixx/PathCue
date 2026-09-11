@@ -1,0 +1,22 @@
+{
+  "document_count": 7,
+  "chunk_count": 9,
+  "metadata_completeness": 1.0,
+  "missing_by_field": {
+    "doc_id": 0,
+    "title": 0,
+    "city": 0,
+    "category": 0,
+    "updated_at": 0
+  },
+  "duplicate_doc_id_count": 0,
+  "duplicate_document_content_count": 0,
+  "duplicate_chunk_content_count": 0,
+  "duplicate_document_rate": 0.0,
+  "empty_document_count": 0,
+  "chunk_length": {
+    "min": 114,
+    "median": 260,
+    "max": 513
+  }
+}

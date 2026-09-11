@@ -1,0 +1,7 @@
+{
+  "provider": "Model2Vec",
+  "model": "minishlab/potion-multilingual-128M",
+  "dimensions": 256,
+  "relevant_cosine_similarity": 0.766712,
+  "irrelevant_cosine_similarity": 0.064465
+}

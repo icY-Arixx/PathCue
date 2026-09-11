@@ -1,0 +1,722 @@
+{
+  "dataset_size": 68,
+  "positive_count": 56,
+  "hard_negative_count": 12,
+  "configuration": {
+    "embedding_backend": "model2vec",
+    "embedding_model": "minishlab/potion-multilingual-128M",
+    "vector_backend": "milvus",
+    "retrieve_k": 8,
+    "final_k": 4,
+    "min_evidence_score": 0.3
+  },
+  "metrics": {
+    "recall_at_1": 0.7857,
+    "recall_at_3": 0.9643,
+    "recall_at_5": 1.0,
+    "recall_at_8": 1.0,
+    "mrr_at_8": 0.8762,
+    "route_accuracy": 0.9706,
+    "citation_doc_accuracy": 0.8036,
+    "hard_negative_rejection_rate": 0.6667,
+    "answerability_accuracy": 0.7794,
+    "latency_p50_ms": 4.47,
+    "latency_p95_ms": 6.12
+  },
+  "details": [
+    {
+      "id": "p001",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4146,
+      "citation_doc_ids": [
+        "spatial_data_quality",
+        "cycling_safety"
+      ]
+    },
+    {
+      "id": "p002",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3154,
+      "citation_doc_ids": [
+        "cycling_safety"
+      ]
+    },
+    {
+      "id": "p003",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.25,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "p004",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.2275,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "p005",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3021,
+      "citation_doc_ids": [
+        "cycling_safety"
+      ]
+    },
+    {
+      "id": "p006",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.2917,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "p007",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3625,
+      "citation_doc_ids": [
+        "cycling_safety"
+      ]
+    },
+    {
+      "id": "p008",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3591,
+      "citation_doc_ids": [
+        "spatial_data_quality",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p009",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4,
+      "citation_doc_ids": [
+        "metro_transfer"
+      ]
+    },
+    {
+      "id": "p010",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3446,
+      "citation_doc_ids": [
+        "metro_transfer"
+      ]
+    },
+    {
+      "id": "p011",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3733,
+      "citation_doc_ids": [
+        "metro_transfer"
+      ]
+    },
+    {
+      "id": "p012",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4615,
+      "citation_doc_ids": [
+        "metro_transfer",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p013",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3479,
+      "citation_doc_ids": [
+        "metro_transfer"
+      ]
+    },
+    {
+      "id": "p014",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3583,
+      "citation_doc_ids": [
+        "construction_detour",
+        "spatial_data_quality"
+      ]
+    },
+    {
+      "id": "p015",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.39,
+      "citation_doc_ids": [
+        "metro_transfer"
+      ]
+    },
+    {
+      "id": "p016",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3708,
+      "citation_doc_ids": [
+        "metro_transfer"
+      ]
+    },
+    {
+      "id": "p017",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.2675,
+      "citation_doc_ids": [
+        "parking_charging"
+      ]
+    },
+    {
+      "id": "p018",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.425,
+      "citation_doc_ids": [
+        "construction_detour",
+        "spatial_data_quality",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p019",
+      "answerable": true,
+      "rank": 1,
+      "intent": "poi_search",
+      "confidence": 0.3225,
+      "citation_doc_ids": [
+        "parking_charging"
+      ]
+    },
+    {
+      "id": "p020",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.3692,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "emergency_accessibility",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p021",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3462,
+      "citation_doc_ids": [
+        "parking_charging",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p022",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3841,
+      "citation_doc_ids": [
+        "parking_charging"
+      ]
+    },
+    {
+      "id": "p023",
+      "answerable": true,
+      "rank": 1,
+      "intent": "poi_search",
+      "confidence": 0.3354,
+      "citation_doc_ids": [
+        "spatial_data_quality",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p024",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3354,
+      "citation_doc_ids": [
+        "parking_charging",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p025",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4712,
+      "citation_doc_ids": [
+        "construction_detour",
+        "emergency_accessibility",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p026",
+      "answerable": true,
+      "rank": 1,
+      "intent": "route_plan",
+      "confidence": 0.3813,
+      "citation_doc_ids": [
+        "construction_detour"
+      ]
+    },
+    {
+      "id": "p027",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.5346,
+      "citation_doc_ids": [
+        "construction_detour"
+      ]
+    },
+    {
+      "id": "p028",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4227,
+      "citation_doc_ids": [
+        "construction_detour"
+      ]
+    },
+    {
+      "id": "p029",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4423,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "construction_detour"
+      ]
+    },
+    {
+      "id": "p030",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3857,
+      "citation_doc_ids": [
+        "construction_detour",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p031",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4731,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "construction_detour"
+      ]
+    },
+    {
+      "id": "p032",
+      "answerable": true,
+      "rank": 5,
+      "intent": "knowledge",
+      "confidence": 0.4519,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p033",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4955,
+      "citation_doc_ids": [
+        "spatial_data_quality",
+        "emergency_accessibility",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p034",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.425,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "spatial_data_quality"
+      ]
+    },
+    {
+      "id": "p035",
+      "answerable": true,
+      "rank": 5,
+      "intent": "knowledge",
+      "confidence": 0.4143,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p036",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.405,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "spatial_data_quality"
+      ]
+    },
+    {
+      "id": "p037",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.4841,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "spatial_data_quality"
+      ]
+    },
+    {
+      "id": "p038",
+      "answerable": true,
+      "rank": 3,
+      "intent": "knowledge",
+      "confidence": 0.45,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p039",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3114,
+      "citation_doc_ids": [
+        "spatial_data_quality"
+      ]
+    },
+    {
+      "id": "p040",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.5292,
+      "citation_doc_ids": [
+        "spatial_data_quality",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p041",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.5288,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p042",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.355,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p043",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.4146,
+      "citation_doc_ids": [
+        "construction_detour",
+        "traffic_notice_lifecycle",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p044",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.5417,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p045",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3625,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p046",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.45,
+      "citation_doc_ids": [
+        "construction_detour",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p047",
+      "answerable": true,
+      "rank": 3,
+      "intent": "knowledge",
+      "confidence": 0.4021,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "traffic_notice_lifecycle"
+      ]
+    },
+    {
+      "id": "p048",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4227,
+      "citation_doc_ids": [
+        "traffic_notice_lifecycle",
+        "traffic_notice_lifecycle",
+        "construction_detour"
+      ]
+    },
+    {
+      "id": "p049",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4042,
+      "citation_doc_ids": [
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p050",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4692,
+      "citation_doc_ids": [
+        "emergency_accessibility",
+        "construction_detour",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p051",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4308,
+      "citation_doc_ids": [
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p052",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4096,
+      "citation_doc_ids": [
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p053",
+      "answerable": true,
+      "rank": 2,
+      "intent": "knowledge",
+      "confidence": 0.4714,
+      "citation_doc_ids": [
+        "emergency_accessibility",
+        "spatial_data_quality"
+      ]
+    },
+    {
+      "id": "p054",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.3583,
+      "citation_doc_ids": [
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p055",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.4481,
+      "citation_doc_ids": [
+        "emergency_accessibility",
+        "construction_detour",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "p056",
+      "answerable": true,
+      "rank": 1,
+      "intent": "knowledge",
+      "confidence": 0.45,
+      "citation_doc_ids": [
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "n057",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.225,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n058",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2611,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n059",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.3333,
+      "citation_doc_ids": [
+        "parking_charging"
+      ]
+    },
+    {
+      "id": "n060",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n061",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n062",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n063",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2212,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n064",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.275,
+      "citation_doc_ids": [
+        "construction_detour",
+        "emergency_accessibility"
+      ]
+    },
+    {
+      "id": "n065",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2,
+      "citation_doc_ids": []
+    },
+    {
+      "id": "n066",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2889,
+      "citation_doc_ids": [
+        "parking_charging"
+      ]
+    },
+    {
+      "id": "n067",
+      "answerable": false,
+      "rank": 0,
+      "intent": "knowledge",
+      "confidence": 0.2562,
+      "citation_doc_ids": [
+        "parking_charging"
+      ]
+    },
+    {
+      "id": "n068",
+      "answerable": false,
+      "rank": 0,
+      "intent": "poi_search",
+      "confidence": 0.2,
+      "citation_doc_ids": []
+    }
+  ]
+}

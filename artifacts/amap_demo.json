@@ -1,0 +1,350 @@
+{
+  "provider": "Amap Web Service",
+  "generated_at": "2026-09-11T18:24:46+08:00",
+  "origin_query": "中国地质大学未来城校区",
+  "destination_query": "武汉站",
+  "origin": {
+    "found": true,
+    "formatted_address": "湖北省武汉市洪山区中国地质大学未来城校区(西北1门)",
+    "location": "114.612970,30.459688",
+    "adcode": "420111"
+  },
+  "destination": {
+    "found": true,
+    "formatted_address": "湖北省武汉市洪山区武汉站",
+    "location": "114.424338,30.606981",
+    "adcode": "420111"
+  },
+  "route": {
+    "found": true,
+    "distance_m": "32923",
+    "duration_s": "2937",
+    "tolls": "11",
+    "steps": [
+      {
+        "instruction": "向南行驶82米右转",
+        "orientation": "南",
+        "step_distance": "82",
+        "cost": {
+          "duration": "29",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "向西南行驶168米右转",
+        "orientation": "西南",
+        "step_distance": "168",
+        "cost": {
+          "duration": "26",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿未来三路向北行驶3.2千米左转进入主路",
+        "orientation": "北",
+        "road_name": "未来三路",
+        "step_distance": "3244",
+        "cost": {
+          "duration": "583",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "8"
+        }
+      },
+      {
+        "instruction": "沿高新大道向西行驶232米靠左沿主路行驶",
+        "orientation": "西",
+        "road_name": "高新大道",
+        "step_distance": "232",
+        "cost": {
+          "duration": "12",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿高新大道向西行驶848米靠左沿主路行驶",
+        "orientation": "西",
+        "road_name": "高新大道",
+        "step_distance": "848",
+        "cost": {
+          "duration": "115",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "1"
+        }
+      },
+      {
+        "instruction": "沿高新大道向西行驶4.4千米向右前方行驶进入匝道",
+        "orientation": "西",
+        "road_name": "高新大道",
+        "step_distance": "4355",
+        "cost": {
+          "duration": "302",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "2"
+        }
+      },
+      {
+        "instruction": "沿G70福银高速入口向南行驶762米减速行驶到达收费站",
+        "orientation": "南",
+        "road_name": "G70福银高速入口",
+        "step_distance": "762",
+        "cost": {
+          "duration": "272",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿G70福银高速入口向东行驶79米靠左",
+        "orientation": "东",
+        "road_name": "G70福银高速入口",
+        "step_distance": "79",
+        "cost": {
+          "duration": "64",
+          "tolls": "2",
+          "toll_distance": "79",
+          "toll_road": "G70福银高速入口",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿G70福银高速入口途径G70福银高速向北行驶10.3千米向右前方行驶进入匝道",
+        "orientation": "北",
+        "road_name": "G70福银高速入口",
+        "step_distance": "10252",
+        "cost": {
+          "duration": "395",
+          "tolls": "2",
+          "toll_distance": "10252",
+          "toll_road": "G70福银高速",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿邹黄互通向北行驶344米靠左",
+        "orientation": "北",
+        "road_name": "邹黄互通",
+        "step_distance": "344",
+        "cost": {
+          "duration": "13",
+          "tolls": "2",
+          "toll_distance": "344",
+          "toll_road": "邹黄互通",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿邹黄互通途径S7武鄂高速、武东大桥向西行驶8.9千米减速行驶到达收费站",
+        "orientation": "西",
+        "road_name": "邹黄互通",
+        "step_distance": "8930",
+        "cost": {
+          "duration": "484",
+          "tolls": "5",
+          "toll_distance": "8930",
+          "toll_road": "S7武鄂高速",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿S7武鄂高速途径青化立交桥、欢乐大道向西行驶2.2千米向右前方行驶",
+        "orientation": "西",
+        "road_name": "S7武鄂高速",
+        "step_distance": "2181",
+        "cost": {
+          "duration": "185",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿欢乐大道出口向西行驶193米右转",
+        "orientation": "西",
+        "road_name": "欢乐大道出口",
+        "step_distance": "193",
+        "cost": {
+          "duration": "46",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿清馨路向北行驶230米右转",
+        "orientation": "北",
+        "road_name": "清馨路",
+        "step_distance": "230",
+        "cost": {
+          "duration": "69",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿和谐路向东行驶245米靠左进入左岔路",
+        "orientation": "东",
+        "road_name": "和谐路",
+        "step_distance": "245",
+        "cost": {
+          "duration": "31",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "1"
+        }
+      },
+      {
+        "instruction": "沿和谐路向东行驶213米左转",
+        "orientation": "东",
+        "road_name": "和谐路",
+        "step_distance": "213",
+        "cost": {
+          "duration": "46",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿高铁南二路向北行驶187米右转",
+        "orientation": "北",
+        "road_name": "高铁南二路",
+        "step_distance": "187",
+        "cost": {
+          "duration": "95",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "沿武汉站西二路向东行驶147米左转",
+        "orientation": "东",
+        "road_name": "武汉站西二路",
+        "step_distance": "147",
+        "cost": {
+          "duration": "77",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "向北行驶187米左转",
+        "orientation": "北",
+        "step_distance": "187",
+        "cost": {
+          "duration": "79",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      },
+      {
+        "instruction": "向西行驶44米到达目的地",
+        "orientation": "西",
+        "step_distance": "44",
+        "cost": {
+          "duration": "14",
+          "tolls": "0",
+          "toll_distance": "0",
+          "toll_road": "",
+          "traffic_lights": "0"
+        }
+      }
+    ]
+  },
+  "nearby_pois": {
+    "count": "3",
+    "pois": [
+      {
+        "parent": "",
+        "address": "2号线;6号线",
+        "business": {
+          "keytag": "地铁站",
+          "tel": "027-83482612",
+          "rectag": "地铁站"
+        },
+        "distance": "",
+        "pcode": "420000",
+        "adcode": "420103",
+        "pname": "湖北省",
+        "cityname": "武汉市",
+        "type": "交通设施服务;地铁站;地铁站",
+        "typecode": "150500",
+        "adname": "江汉区",
+        "citycode": "027",
+        "name": "江汉路(地铁站)",
+        "location": "114.292306,30.579581",
+        "id": "BV10060884"
+      },
+      {
+        "parent": "",
+        "address": "4号线;7号线",
+        "business": {
+          "keytag": "地铁站",
+          "tel": "027-83487392",
+          "rectag": "地铁站"
+        },
+        "distance": "",
+        "pcode": "420000",
+        "adcode": "420106",
+        "pname": "湖北省",
+        "cityname": "武汉市",
+        "type": "交通设施服务;地铁站;地铁站",
+        "typecode": "150500",
+        "adname": "武昌区",
+        "citycode": "027",
+        "name": "武昌火车站(地铁站)",
+        "location": "114.316449,30.530624",
+        "id": "BV10060908"
+      },
+      {
+        "parent": "",
+        "address": "(在建)10号线新港线西延线;2号线",
+        "business": {
+          "keytag": "地铁站",
+          "tel": "027-83482482",
+          "rectag": "地铁站"
+        },
+        "distance": "",
+        "pcode": "420000",
+        "adcode": "420103",
+        "pname": "湖北省",
+        "cityname": "武汉市",
+        "type": "交通设施服务;地铁站;地铁站",
+        "typecode": "150500",
+        "adname": "江汉区",
+        "citycode": "027",
+        "name": "汉口火车站(地铁站)",
+        "location": "114.254961,30.615485",
+        "id": "BV10057987"
+      }
+    ]
+  }
+}

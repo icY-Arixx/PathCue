@@ -1,0 +1,46 @@
+from __future__ import annotations
+
+import html
+import json
+from pathlib import Path
+
+
+if __name__ == "__main__":
+    root = Path(__file__).resolve().parents[1]
+    data = json.loads((root / "artifacts" / "amap_demo.json").read_text(encoding="utf-8"))
+    route = data["route"]
+    origin = data["origin"]
+    destination = data["destination"]
+    pois = data["nearby_pois"]["pois"]
+    distance = float(route["distance_m"]) / 1000
+    duration = int(route["duration_s"]) / 60
+    tolls = float(route.get("tolls") or 0)
+    poi_cards = "".join(
+        f'<article><span>地铁站 POI</span><strong>{html.escape(item.get("name", ""))}</strong>'
+        f'<small>{html.escape(item.get("address", "地址未返回"))}</small></article>'
+        for item in pois
+    )
+    page = f"""<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>高德地图工具调用验证</title><style>
+*{{box-sizing:border-box}} body{{margin:0;background:#07111f;color:#eaf2ff;font-family:"Microsoft YaHei",sans-serif}}
+.page{{width:1440px;height:900px;padding:56px 70px;background:radial-gradient(circle at 85% 5%,#17385d 0,transparent 32%),#07111f}}
+.tag{{display:inline-block;padding:7px 13px;border:1px solid #27d3a2;border-radius:20px;color:#65efc7;font-size:14px}}
+h1{{font-size:42px;margin:20px 0 8px}} .sub{{color:#91a6bf;margin-bottom:34px}}
+.route{{display:grid;grid-template-columns:1fr 210px 1fr;align-items:center;background:#0d1c2e;border:1px solid #203a57;border-radius:18px;padding:28px}}
+.place small,.metric small,article small{{display:block;color:#8198b2;margin-top:7px}} .place strong{{font-size:22px}} .line{{height:2px;background:linear-gradient(90deg,#23c9a0,#55a7ff);position:relative}}
+.line:before,.line:after{{content:"";position:absolute;top:-7px;width:16px;height:16px;border-radius:50%;background:#63efc9}} .line:after{{right:0;background:#5aa8ff}}
+.metrics{{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:22px 0}} .metric{{background:#10233a;padding:20px;border-radius:14px;border:1px solid #1c3d5c}} .metric strong{{display:block;font-size:29px;color:#fff}}
+h2{{font-size:21px;margin:28px 0 14px}} .pois{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}} article{{min-height:116px;padding:18px;background:#0d1c2e;border:1px solid #203a57;border-radius:14px}} article span{{font-size:12px;color:#55dcb6}} article strong{{display:block;margin-top:10px;font-size:18px}}
+.foot{{margin-top:28px;padding-top:19px;border-top:1px solid #203a57;color:#8298b1;font-size:14px;display:flex;justify-content:space-between}} .ok{{color:#64e8c2}}
+</style></head><body><main class="page">
+<span class="tag">LIVE API · SUCCESS</span><h1>高德地图 Web 服务调用验证</h1>
+<div class="sub">城市出行与空间知识 RAG Agent｜真实地理编码、驾车路径规划与 POI 检索</div>
+<section class="route"><div class="place"><strong>{html.escape(data['origin_query'])}</strong><small>{html.escape(origin['formatted_address'])} · {origin['location']}</small></div><div class="line"></div><div class="place" style="text-align:right"><strong>{html.escape(data['destination_query'])}</strong><small>{html.escape(destination['formatted_address'])} · {destination['location']}</small></div></section>
+<section class="metrics"><div class="metric"><strong>{distance:.1f} km</strong><small>规划距离</small></div><div class="metric"><strong>{duration:.1f} min</strong><small>预计用时</small></div><div class="metric"><strong>¥{tolls:g}</strong><small>预计过路费</small></div><div class="metric"><strong>{len(route['steps'])}</strong><small>导航步骤</small></div></section>
+<h2>联动检索结果</h2><section class="pois">{poi_cards}</section>
+<footer class="foot"><span><b class="ok">●</b> Provider: {html.escape(data['provider'])} · Key 已脱敏且未写入产物</span><span>{html.escape(data['generated_at'])}</span></footer>
+</main></body></html>"""
+    output = root / "artifacts" / "amap_demo.html"
+    output.write_text(page, encoding="utf-8")
+    print(output)

@@ -1,0 +1,56 @@
+{
+  "uri": "http://localhost:19530",
+  "collection": "urban_mobility_chunks",
+  "entity_count": 9,
+  "first_index_run": {
+    "scanned_documents": 7,
+    "changed_documents": 7,
+    "unchanged_documents": 0,
+    "removed_documents": 0,
+    "chunks_upserted": 9
+  },
+  "second_index_run": {
+    "scanned_documents": 7,
+    "changed_documents": 0,
+    "unchanged_documents": 7,
+    "removed_documents": 0,
+    "chunks_upserted": 0
+  },
+  "incremental_update": {
+    "create": {
+      "scanned_documents": 8,
+      "changed_documents": 1,
+      "unchanged_documents": 7,
+      "removed_documents": 0,
+      "chunks_upserted": 1
+    },
+    "update": {
+      "scanned_documents": 8,
+      "changed_documents": 1,
+      "unchanged_documents": 7,
+      "removed_documents": 0,
+      "chunks_upserted": 1
+    },
+    "cleanup": {
+      "scanned_documents": 7,
+      "changed_documents": 0,
+      "unchanged_documents": 7,
+      "removed_documents": 1,
+      "chunks_upserted": 0
+    },
+    "counts": {
+      "baseline": 9,
+      "after_create": 10,
+      "after_update": 10,
+      "after_cleanup": 9
+    }
+  },
+  "retrieval": {
+    "answer": "道路施工信息应至少记录道路名称、影响方向、起止位置、开始与结束时间、封闭类型、适用交通方式、建议绕行路线、发布单位和更新时间。[1]每次更新记录操作人、更新时间、变更字段和前后版本号。[2]应将漏报字段、错误坐标和过期公告纳入数据质量问题单。[3]",
+    "citations": [
+      "construction_detour",
+      "traffic_notice_lifecycle",
+      "emergency_accessibility"
+    ]
+  }
+}

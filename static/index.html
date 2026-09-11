@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>城市出行与空间知识 RAG Agent</title>
+  <style>
+    :root{font-family:Inter,"Microsoft YaHei",sans-serif;color:#172033;background:#f4f7fb}body{margin:0}.wrap{max-width:920px;margin:44px auto;padding:0 20px}.hero{margin-bottom:24px}.hero h1{font-size:34px;margin:0 0 8px}.hero p{color:#5f6b7a}.panel{background:#fff;border:1px solid #dfe5ee;border-radius:16px;padding:22px;box-shadow:0 12px 32px rgba(40,55,80,.08)}textarea{box-sizing:border-box;width:100%;min-height:110px;border:1px solid #cfd7e3;border-radius:10px;padding:13px;font-size:16px;resize:vertical}button{margin-top:12px;background:#2457d6;color:white;border:0;border-radius:9px;padding:11px 18px;font-weight:700;cursor:pointer}.meta{display:flex;gap:16px;color:#657289;font-size:13px;margin:16px 0}.answer{white-space:pre-wrap;line-height:1.75}.citation{border-top:1px solid #edf0f5;padding:12px 0}.citation strong{color:#2457d6}.empty{color:#8792a2}</style>
+</head>
+<body><main class="wrap"><section class="hero"><h1>城市出行与空间知识 RAG Agent</h1><p>混合检索、场景路由、引用回答与反馈闭环的离线演示</p></section><section class="panel"><textarea id="question">夜间骑行需要注意什么？</textarea><button id="ask">查询知识库</button><div id="result" class="empty">等待查询</div></section></main>
+<script>
+const result=document.getElementById('result');document.getElementById('ask').onclick=async()=>{result.textContent='检索中...';try{const r=await fetch('/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:document.getElementById('question').value})});const d=await r.json();result.innerHTML=`<div class="meta"><span>场景：${d.intent}</span><span>置信度：${d.confidence}</span><span>耗时：${d.latency_ms} ms</span></div><div class="answer">${d.answer}</div>`+d.citations.map(c=>`<div class="citation"><strong>[${c.citation_id}] ${c.title}</strong><br>${c.quote}</div>`).join('')}catch(e){result.textContent='请求失败：'+e.message}};
+</script></body></html>
+
