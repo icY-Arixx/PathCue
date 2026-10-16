@@ -8,6 +8,18 @@
 
 智谱 `glm-4.7-flash` 接口通过 Function Calling 选择路线、天气、知识工具，服务端校验参数与调用上限。模型不持有设备权限；没有模型 Key 时保留表单、有限规则和离线知识能力。
 
+## 运行界面
+
+真实路线比较、地图联动与结构化条件：
+
+![PathCue 真实路线与地图界面](docs/validation-images/live-desktop.jpg)
+
+| 全国通用出行知识 | 联网证据与降级状态 |
+| --- | --- |
+| ![全国通用出行知识检索](docs/validation-images/live-general-knowledge.png) | ![联网证据状态](docs/validation-images/live-online-unavailable.png) |
+
+截图来自 2026-10-16 实际浏览器验收；路线、天气和联网资料会随查询时间及第三方接口状态变化。完整验证范围与数据边界见[验收记录](docs/validation.md)。
+
 - [启动、API、索引升级与恢复](docs/upgrade.md)
 - [定位、天气与模型工具配置](docs/context-and-model.md)
 - [联网证据与公网发布方案](docs/public-release-plan.md)
