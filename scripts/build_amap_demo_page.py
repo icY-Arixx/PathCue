@@ -35,7 +35,7 @@ h2{{font-size:21px;margin:28px 0 14px}} .pois{{display:grid;grid-template-column
 .foot{{margin-top:28px;padding-top:19px;border-top:1px solid #203a57;color:#8298b1;font-size:14px;display:flex;justify-content:space-between}} .ok{{color:#64e8c2}}
 </style></head><body><main class="page">
 <span class="tag">LIVE API · SUCCESS</span><h1>高德地图 Web 服务调用验证</h1>
-<div class="sub">城市出行与空间知识 RAG Agent｜真实地理编码、驾车路径规划与 POI 检索</div>
+<div class="sub">PathCue｜情境感知与知识增强的出行助手</div>
 <section class="route"><div class="place"><strong>{html.escape(data['origin_query'])}</strong><small>{html.escape(origin['formatted_address'])} · {origin['location']}</small></div><div class="line"></div><div class="place" style="text-align:right"><strong>{html.escape(data['destination_query'])}</strong><small>{html.escape(destination['formatted_address'])} · {destination['location']}</small></div></section>
 <section class="metrics"><div class="metric"><strong>{distance:.1f} km</strong><small>规划距离</small></div><div class="metric"><strong>{duration:.1f} min</strong><small>预计用时</small></div><div class="metric"><strong>¥{tolls:g}</strong><small>预计过路费</small></div><div class="metric"><strong>{len(route['steps'])}</strong><small>导航步骤</small></div></section>
 <h2>联动检索结果</h2><section class="pois">{poi_cards}</section>

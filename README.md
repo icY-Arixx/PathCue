@@ -51,7 +51,7 @@
 ## Quick start
 
 ```powershell
-cd "urban-mobility-rag-agent"
+cd "PathCue"
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install ".[documents,embeddings]" --no-cache-dir

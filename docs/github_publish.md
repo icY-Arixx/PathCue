@@ -36,7 +36,7 @@ git commit -m "feat: initialize urban mobility RAG agent"
 然后在 GitHub 新建一个空仓库，不要勾选自动创建 README、LICENSE 或 `.gitignore`。将下面地址替换成真实仓库地址：
 
 ```powershell
-git remote add origin https://github.com/<your-account>/urban-mobility-rag-agent.git
+git remote add origin https://github.com/<your-account>/PathCue.git
 git remote -v
 git push -u origin main
 ```

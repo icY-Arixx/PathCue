@@ -3,7 +3,7 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "urban-mobility-rag-agent"
+name = "pathcue"
 version = "0.2.0"
 description = "PathCue: a context-aware, knowledge-augmented urban travel assistant"
 readme = "README.md"
