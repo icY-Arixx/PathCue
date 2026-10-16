@@ -1,14 +1,168 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>城市出行与空间知识 RAG Agent</title>
-  <style>
-    :root{font-family:Inter,"Microsoft YaHei",sans-serif;color:#172033;background:#f4f7fb}body{margin:0}.wrap{max-width:920px;margin:44px auto;padding:0 20px}.hero{margin-bottom:24px}.hero h1{font-size:34px;margin:0 0 8px}.hero p{color:#5f6b7a}.panel{background:#fff;border:1px solid #dfe5ee;border-radius:16px;padding:22px;box-shadow:0 12px 32px rgba(40,55,80,.08)}textarea{box-sizing:border-box;width:100%;min-height:110px;border:1px solid #cfd7e3;border-radius:10px;padding:13px;font-size:16px;resize:vertical}button{margin-top:12px;background:#2457d6;color:white;border:0;border-radius:9px;padding:11px 18px;font-weight:700;cursor:pointer}.meta{display:flex;gap:16px;color:#657289;font-size:13px;margin:16px 0}.answer{white-space:pre-wrap;line-height:1.75}.citation{border-top:1px solid #edf0f5;padding:12px 0}.citation strong{color:#2457d6}.empty{color:#8792a2}</style>
-</head>
-<body><main class="wrap"><section class="hero"><h1>城市出行与空间知识 RAG Agent</h1><p>混合检索、场景路由、引用回答与反馈闭环的离线演示</p></section><section class="panel"><textarea id="question">夜间骑行需要注意什么？</textarea><button id="ask">查询知识库</button><div id="result" class="empty">等待查询</div></section></main>
-<script>
-const result=document.getElementById('result');document.getElementById('ask').onclick=async()=>{result.textContent='检索中...';try{const r=await fetch('/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:document.getElementById('question').value})});const d=await r.json();result.innerHTML=`<div class="meta"><span>场景：${d.intent}</span><span>置信度：${d.confidence}</span><span>耗时：${d.latency_ms} ms</span></div><div class="answer">${d.answer}</div>`+d.citations.map(c=>`<div class="citation"><strong>[${c.citation_id}] ${c.title}</strong><br>${c.quote}</div>`).join('')}catch(e){result.textContent='请求失败：'+e.message}};
-</script></body></html>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>PathCue｜情境感知与知识增强的出行助手</title>
+    <link rel="stylesheet" href="/static/app.css" />
+    <script defer src="/static/vendor/lucide.min.js"></script>
+    <script defer src="/static/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <i data-lucide="route"></i><strong>PathCue</strong><span id="product-mode">情境感知与知识增强的出行助手</span>
+      </div>
+      <button id="new-trip" class="quiet"><i data-lucide="plus"></i>新行程</button>
+    </header>
+    <main class="workspace">
+      <aside class="task-panel" aria-label="行程条件和方案">
+        <button class="sheet-handle" id="sheet-handle" aria-expanded="false" aria-label="展开或收起方案面板">
+          <span></span>
+        </button>
+        <div class="panel-scroll">
+          <section class="trip-section">
+            <div class="section-heading">
+              <h1>规划路线</h1>
+            </div>
+            <p class="product-description">结合你的位置、天气和出行要求，找到合适的路线。</p>
+            <form id="trip-form">
+              <details id="itinerary" open>
+                <summary id="itinerary-summary">起终点与时间</summary>
+                <div class="places">
+                  <label
+                    ><span class="place-dot start"></span><span class="sr-only">起点</span
+                    ><input
+                      id="origin"
+                      name="origin"
+                      placeholder="从哪里出发"
+                      autocomplete="off"
+                      maxlength="160" /></label
+                  ><label
+                    ><span class="place-dot end"></span><span class="sr-only">终点</span
+                    ><input
+                      id="destination"
+                      name="destination"
+                      placeholder="到哪里去"
+                      autocomplete="off"
+                      maxlength="160"
+                  /></label>
+                </div>
+                <div class="location-controls">
+                  <button type="button" id="locate-origin"><i data-lucide="locate-fixed"></i>使用当前位置</button>
+                  <span id="location-status" class="micro" role="status" aria-live="polite"></span>
+                </div>
+                <p class="micro location-privacy">
+                  定位用于查询起点地址与路线，坐标会发送至本服务和高德；不自动提供给大模型。也可手填起点。
+                </p>
+                <div class="form-row">
+                  <label>城市<input name="city" id="city" placeholder="如：上海市" maxlength="160" /></label
+                  ><label>出行日期<input type="date" id="date" name="date" /></label>
+                </div>
+                <div class="form-row">
+                  <label>出发时间<input type="time" id="depart_at" name="depart_at" /></label
+                  ><label
+                    >到达截止 <span class="muted">可选</span><input type="time" id="arrive_by" name="arrive_by"
+                  /></label>
+                </div>
+                <p id="time-hint" class="micro" hidden></p>
+              </details>
+              <details id="conditions" open>
+                <summary>
+                  修改条件 <span id="condition-values">预算 · 总步行 · 换乘</span><i data-lucide="chevron-down"></i>
+                </summary>
+                <div class="limits">
+                  <label
+                    >预算 / 元<input
+                      type="number"
+                      id="budget"
+                      name="budget"
+                      min="0"
+                      step="0.5"
+                      placeholder="不限" /></label
+                  ><label
+                    >总步行 / 米<input
+                      type="number"
+                      id="max_walk_m"
+                      name="max_walk_m"
+                      min="0"
+                      step="50"
+                      placeholder="不限" /></label
+                  ><label
+                    >最多换乘<input
+                      type="number"
+                      id="max_transfers"
+                      name="max_transfers"
+                      min="0"
+                      max="20"
+                      placeholder="不限"
+                  /></label>
+                </div>
+                <fieldset class="modes">
+                  <legend class="sr-only">交通方式</legend>
+                  <label><input type="checkbox" name="mode" value="transit" checked />公共交通</label
+                  ><label><input type="checkbox" name="mode" value="walking" checked />步行</label
+                  ><label><input type="checkbox" name="mode" value="driving" />驾车</label>
+                </fieldset>
+                <label class="preference"
+                  >优先考虑<select id="preference">
+                    <option value="fastest">耗时更短</option>
+                    <option value="less_walking">步行更少</option>
+                    <option value="fewer_transfers">换乘更少</option>
+                    <option value="cheapest">费用更低</option>
+                  </select></label
+                >
+                <p class="micro">留空可取消限制，0 表示不允许。以上限额默认均为硬条件。</p>
+              </details>
+              <button class="primary plan" type="submit"><i data-lucide="search"></i>规划路线</button>
+            </form>
+          </section>
+          <section class="results-section" aria-label="路线方案">
+            <div class="section-heading">
+              <h2 id="results-title">出行方案</h2>
+              <span id="route-count" class="muted"></span>
+            </div>
+            <div id="status" role="status" aria-live="polite" class="status">填入起终点，比较适合你的路线。</div>
+            <div id="candidates"></div>
+            <section id="weather" class="weather-section" aria-label="出行天气" hidden></section>
+            <div id="evidence"></div>
+            <div id="routes"></div>
+            <div id="notes"></div>
+          </section>
+          <details id="history">
+            <summary>历史记录</summary>
+            <div id="history-content"></div>
+          </details>
+          <details id="developer">
+            <summary>开发者信息</summary>
+            <pre id="debug"></pre>
+          </details>
+        </div>
+        <footer class="composer">
+          <form id="message-form">
+            <label class="sr-only" for="message">追问或修改条件</label
+            ><textarea id="message" rows="1" maxlength="1000" placeholder="告诉我出行需求，或问出行问题"></textarea
+            ><button type="submit" class="primary send" aria-label="发送修改"><i data-lucide="arrow-up"></i></button>
+          </form>
+          <div id="language-note" class="micro">也可以直接填写或修改上方条件</div>
+        </footer>
+      </aside>
+      <section class="map-panel" aria-label="路线地图">
+        <div id="map"></div>
+        <div class="map-top">
+          <span class="map-chip"><i data-lucide="map-pin"></i><span id="map-caption">路线与城市</span></span
+          ><button id="fit-map" class="map-chip" aria-label="查看全部路线"><i data-lucide="scan"></i>全部路线</button>
+        </div>
+        <div id="map-empty" class="map-empty">
+          <i data-lucide="map"></i>
+          <h2>把路线放回城市里</h2>
+          <p>确认起终点后，在这里比较路线。</p>
+          <p id="map-config" class="micro">正在检查地图配置…</p>
+        </div>
+        <div class="map-bottom">
+          <span id="map-legend">预计耗时仅供参考，请以实际交通情况为准</span><span>Asia/Shanghai</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

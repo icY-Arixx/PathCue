@@ -1,0 +1,23 @@
+{
+  "test_type": "synthetic public-campus coordinate through LIVE Amap; not device GPS",
+  "input": {
+    "longitude": 114.4,
+    "latitude": 30.52,
+    "accuracy_m": 100,
+    "obtained_at": "2026-10-16T11:06:03.826774+00:00"
+  },
+  "result": {
+    "place": {
+      "id": "device:114.405539822049,30.517696940105",
+      "name": "当前位置",
+      "location": "114.405539822049,30.517696940105",
+      "city": "武汉市",
+      "address": "湖北省武汉市洪山区关山街道中国地质大学(东区)",
+      "source": "浏览器定位 → 高德坐标转换与逆地理编码"
+    },
+    "accuracy_m": 100.0,
+    "obtained_at": "2026-10-16T11:06:03.826774+00:00",
+    "coordinate_system": "GCJ-02"
+  },
+  "browser_permission": "not granted or read during this test"
+}

@@ -45,11 +45,11 @@ class LocalVectorStore:
     def all_chunks(self) -> list[Chunk]:
         return list(self._chunks.values())
 
-    def search(self, query_vector: list[float], k: int = 8) -> list[SearchHit]:
+    def search(self, query_vector: list[float], k: int = 8, allowed_ids: set | None = None) -> list[SearchHit]:
         hits = [
             SearchHit(chunk=chunk, score=cosine_similarity(query_vector, chunk.vector or []), dense_score=cosine_similarity(query_vector, chunk.vector or []))
             for chunk in self._chunks.values()
-            if chunk.vector
+            if chunk.vector and (allowed_ids is None or chunk.chunk_id in allowed_ids)
         ]
         return sorted(hits, key=lambda hit: hit.score, reverse=True)[:k]
 
@@ -72,10 +72,15 @@ class MilvusVectorStore:
             schema.add_field("text", DataType.VARCHAR, max_length=65535)
             schema.add_field("source", DataType.VARCHAR, max_length=1024)
             schema.add_field("chunk_index", DataType.INT64)
+            schema.add_field("metadata", DataType.JSON)
             schema.add_field("vector", DataType.FLOAT_VECTOR, dim=dimensions)
             index = self.client.prepare_index_params()
             index.add_index("vector", index_type="AUTOINDEX", metric_type="COSINE")
             self.client.create_collection(collection_name, schema=schema, index_params=index)
+        else:
+            fields = {f["name"]: f for f in self.client.describe_collection(collection_name)["fields"]}
+            if "metadata" not in fields or int(fields["vector"].get("params", {}).get("dim", 0)) != dimensions:
+                raise RuntimeError("Milvus schema mismatch: preserve existing collection; use a NEW versioned MILVUS_COLLECTION and INDEX_DIR, rebuild and verify before switching. See docs/upgrade.md")
 
     def upsert(self, chunks: list[Chunk]) -> None:
         rows = [
@@ -86,6 +91,7 @@ class MilvusVectorStore:
                 "text": chunk.text,
                 "source": chunk.source,
                 "chunk_index": chunk.chunk_index,
+                "metadata": chunk.metadata,
                 "vector": chunk.vector,
             }
             for chunk in chunks
@@ -94,25 +100,28 @@ class MilvusVectorStore:
             self.client.upsert(self.collection_name, rows)
 
     def delete_document(self, doc_id: str) -> int:
-        self.client.delete(self.collection_name, filter=f'doc_id == "{doc_id}"')
+        self.client.delete(self.collection_name, filter=f'doc_id == {json.dumps(doc_id)}')
         return 0
 
     def persist(self) -> None:
         self.client.flush(self.collection_name)
 
-    def search(self, query_vector: list[float], k: int = 8) -> list[SearchHit]:
+    def search(self, query_vector: list[float], k: int = 8, allowed_ids: set | None = None) -> list[SearchHit]:
+        if allowed_ids is not None and not allowed_ids:
+            return []
         raw = self.client.search(
             self.collection_name,
             data=[query_vector],
             anns_field="vector",
             limit=k,
-            output_fields=["chunk_id", "doc_id", "title", "text", "source", "chunk_index"],
+            output_fields=["chunk_id", "doc_id", "title", "text", "source", "chunk_index", "metadata"],
+            filter="" if allowed_ids is None else "chunk_id in " + json.dumps(sorted(allowed_ids)),
             search_params={"metric_type": "COSINE"},
         )[0]
         hits: list[SearchHit] = []
         for item in raw:
             entity = item["entity"]
             chunk_id = entity.get("chunk_id") or item.get("id")
-            chunk = Chunk(str(chunk_id), entity["doc_id"], entity["title"], entity["text"], entity["source"], entity["chunk_index"], vector=None)
+            chunk = Chunk(str(chunk_id), entity["doc_id"], entity["title"], entity["text"], entity["source"], entity["chunk_index"], metadata=entity.get("metadata", {}), vector=None)
             hits.append(SearchHit(chunk, float(item["distance"]), dense_score=float(item["distance"])))
         return hits

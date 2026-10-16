@@ -78,7 +78,7 @@ def _load_sidecar_metadata(path: Path) -> dict[str, str]:
     payload = json.loads(sidecar.read_text(encoding="utf-8-sig"))
     if not isinstance(payload, dict):
         raise ValueError(f"Metadata sidecar must be a JSON object: {sidecar}")
-    return {str(key): str(value) for key, value in payload.items()}
+    return payload
 
 
 def load_document(path: Path) -> SourceDocument:

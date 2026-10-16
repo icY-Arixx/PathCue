@@ -17,3 +17,6 @@ build/
 *.egg-info/
 milvus-standalone-docker-compose.yml
 infra/volumes/
+.tmp/
+data/index-qa/
+data/index-ci/

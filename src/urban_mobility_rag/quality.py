@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-import statistics
 import hashlib
+import statistics
 from pathlib import Path
 
 from .chunking import MetadataAwareChunker
 from .loaders import iter_documents
-
 
 REQUIRED_METADATA = ("doc_id", "title", "city", "category", "updated_at")
 

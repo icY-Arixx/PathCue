@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import urllib.request
 
 from .models import Citation, SearchHit
@@ -37,7 +38,9 @@ class ExtractiveAnswerGenerator:
             seen_chunks.add(hit.chunk.chunk_id)
             citation_id = len(citations) + 1
             answer_parts.append(f"{sentence}[{citation_id}]")
-            citations.append(Citation(citation_id, hit.chunk.doc_id, hit.chunk.title, hit.chunk.source, hit.chunk.chunk_id, sentence[:160], hit.rerank_score))
+            citations.append(
+                Citation(citation_id, hit.chunk.doc_id, hit.chunk.title, hit.chunk.source, hit.chunk.chunk_id, sentence, hit.rerank_score)
+            )
         return "".join(answer_parts), citations
 
 
@@ -48,11 +51,31 @@ class OpenAICompatibleAnswerGenerator:
         self.model = model
 
     def generate(self, question: str, hits: list[SearchHit]) -> tuple[str, list[Citation]]:
-        citations = [Citation(i, hit.chunk.doc_id, hit.chunk.title, hit.chunk.source, hit.chunk.chunk_id, hit.chunk.text[:160], hit.rerank_score) for i, hit in enumerate(hits, 1)]
+        citations = [
+            Citation(i, hit.chunk.doc_id, hit.chunk.title, hit.chunk.source, hit.chunk.chunk_id, hit.chunk.text[:160], hit.rerank_score)
+            for i, hit in enumerate(hits, 1)
+        ]
         context = "\n\n".join(f"[{item.citation_id}] {hit.chunk.text}" for item, hit in zip(citations, hits))
         prompt = f"仅依据给定资料回答，关键事实后标注[编号]。资料不足时明确说明。\n问题：{question}\n资料：\n{context}"
-        payload = json.dumps({"model": self.model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.1}).encode("utf-8")
-        request = urllib.request.Request(f"{self.base_url}/chat/completions", data=payload, headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(request, timeout=45) as response:
-            data = json.loads(response.read())
-        return data["choices"][0]["message"]["content"], citations
+        options = {"model": self.model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.1, "max_tokens": 1024}
+        if self.model.lower().startswith("glm-"):
+            options["thinking"] = {"type": "disabled"}
+        payload = json.dumps(options).encode("utf-8")
+        request = urllib.request.Request(
+            f"{self.base_url}/chat/completions",
+            data=payload,
+            headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=10) as response:
+                data = json.loads(response.read(128000))
+            answer = data["choices"][0]["message"]["content"]
+            used = {int(n) for n in re.findall(r"\[(\d+)\]", answer)}
+        except Exception:
+            return ExtractiveAnswerGenerator().generate(question, hits)
+        # LLM citation labels alone do not prove entailment. Return extractive statements
+        # for cited chunks so each visible claim has an exact supporting passage.
+        selected = [h for i, h in enumerate(hits, 1) if i in used]
+        if not selected:
+            return "资料不足，未获得可核查的引用。", []
+        return ExtractiveAnswerGenerator().generate(question, selected)

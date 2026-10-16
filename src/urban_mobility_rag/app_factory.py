@@ -2,7 +2,11 @@ from __future__ import annotations
 
 from .chunking import MetadataAwareChunker
 from .config import Settings
-from .embeddings import HashEmbeddingProvider, Model2VecEmbeddingProvider, OpenAICompatibleEmbeddingProvider
+from .embeddings import (
+    HashEmbeddingProvider,
+    Model2VecEmbeddingProvider,
+    OpenAICompatibleEmbeddingProvider,
+)
 from .generation import ExtractiveAnswerGenerator, OpenAICompatibleAnswerGenerator
 from .indexer import KnowledgeBaseIndexer
 from .pipeline import RAGPipeline
@@ -12,13 +16,14 @@ from .store import LocalVectorStore, MilvusVectorStore
 
 def build_runtime(settings: Settings, run_index: bool = True) -> tuple[RAGPipeline, LocalVectorStore, object | None]:
     if settings.embedding_backend == "api" and settings.llm_base_url and settings.llm_api_key:
-        embeddings = OpenAICompatibleEmbeddingProvider(settings.llm_base_url, settings.llm_api_key, "text-embedding-v3", settings.embedding_dimensions)
+        embeddings = OpenAICompatibleEmbeddingProvider(settings.llm_base_url, settings.llm_api_key, settings.embedding_api_model, settings.embedding_dimensions)
     elif settings.embedding_backend == "model2vec":
         embeddings = Model2VecEmbeddingProvider(settings.embedding_model, settings.model_cache_dir or settings.index_dir / "models")
     elif settings.embedding_backend == "hash":
         embeddings = HashEmbeddingProvider(settings.embedding_dimensions)
     else:
         raise ValueError(f"Unsupported or incomplete EMBEDDING_BACKEND: {settings.embedding_backend}")
+    embeddings.revision = f"{getattr(embeddings, 'revision', '')}:{settings.embedding_revision}"
     store = LocalVectorStore(settings.index_dir / "vectors.json")
     dense_store = store
     if settings.vector_backend == "milvus":

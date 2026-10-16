@@ -1,40 +1,34 @@
-# Architecture
-
-## End-to-end flow
+# PathCue 当前架构
 
 ```mermaid
-flowchart LR
-    A[Mobility documents] --> B[Parser and metadata validation]
-    B --> C[Metadata-aware chunking]
-    C --> D[Embedding]
-    D --> E[(Local store or Milvus)]
-    Q[User question] --> R[LangGraph intent router]
-    R --> H[BM25 plus dense retrieval]
-    E --> H
-    H --> K[Transparent reranker]
-    K --> G[Grounded answer with citations]
-    R --> M[Amap MCP tools]
-    M --> G
-    G --> F[Feedback and evaluation]
-    F --> B
+flowchart TD
+    UI[静态响应式任务面板与地图] --> API[FastAPI /api/trips 与兼容 /query]
+    API --> U[LangGraph 理解与局部更新]
+    LLM[可选智谱模型 最多3个工具] --> U
+    GEO[用户主动网页定位] --> LOC[坐标转换与地址候选确认]
+    LOC --> U
+    DB[(SQLite 会话)] <--> U
+    U --> C[必需字段与地点候选确认]
+    C --> M[AmapClient 地点/公交/步行/驾车]
+    M --> R[同任务本地知识检索]
+    M --> W[城市与日期天气]
+    R --> V[程序硬条件三态校验]
+    V --> S[软偏好排序与结果解释]
+    S --> DB
+    S --> UI
+    KB[原始文档与 sidecar 元数据] --> IDX[解析/分块/模型与元数据指纹]
+    IDX --> LOCAL[(本地 JSON 镜像与恢复快照)]
+    IDX --> MILVUS[(可选版本化 Milvus 集合)]
+    LOCAL --> R
+    MILVUS --> R
 ```
 
-## Engineering decisions
+图的澄清与失败节点直接结束，不存在自主规划循环。地图使用现有 AmapClient 直接接入有限任务，原 MCP 工具入口继续保留给脚本使用；网页无需通过 MCP 转发。
 
-- **Offline-first:** deterministic hash embeddings and a JSON vector store make CI reproducible without keys.
-- **Production adapter:** `MilvusVectorStore` supports a real vector database when configured.
-- **Hybrid retrieval:** reciprocal-rank fusion combines dense semantic retrieval with BM25 keyword retrieval.
-- **Traceability:** every chunk carries `doc_id`, source, checksum, chunk index and update metadata.
-- **Incremental indexing:** unchanged document checksums are skipped; changed and removed documents are reconciled.
-- **Observable workflow:** query results expose route, candidate count, selected chunk IDs, confidence and latency.
-- **Tool isolation:** map operations are exposed through a dedicated MCP server instead of being embedded in prompts.
+模型每轮只做一次有界工具选择，输出经过参数与工具名单校验，调用已有路线、知识与天气能力。拒绝执行 shell、任意网络请求或自动确认位置。网页定位由用户点击触发，不由模型请求设备权限；原始 GPS 和定位地址不进入模型上下文。未将 ContextPilot 的模拟执行层合并进来。
 
-## Production extensions
+检索顺序：乘客/维护者与真实/演示隔离、地域和时间过滤 → BM25 + 向量 → RRF → 原启发式重排序 → 证据门槛 → 支撑具体陈述的抽取句与引用。多版本同范围资料提示可能冲突，不声称能自动判断所有语义矛盾。
 
-1. Replace hash embeddings with a hosted or local Chinese embedding model.
-2. Use Milvus dense plus sparse fields and server-side BM25 hybrid search.
-3. Add a cross-encoder reranker and offline relevance labels.
-4. Parse document layout, tables and OCR results into typed metadata.
-5. Add temporal and geographic filters before retrieval.
-6. Add authentication, rate limits, object storage and tracing.
+请求只提交本轮修改。服务端状态是唯一已确认需求；表单未提交输入只是草稿，立即使旧方案失效。选中路线与地图高亮共用一个 selected id，切换选中项不重新 fit bounds。
 
+详见 [升级指南与API](upgrade.md)、[实际验证结果](validation.md)。
