@@ -1,0 +1,505 @@
+{
+  "verified_at": "2026-10-16T10:11:27.963949+00:00",
+  "mode": "LIVE AMAP - not fixtures",
+  "sample_date": "2026-10-17",
+  "confirmed": {
+    "origin": {
+      "id": "B0FFGXTV88",
+      "name": "中国地质大学(武汉)未来城校区",
+      "location": "114.617160,30.457544",
+      "city": "武汉市",
+      "address": "湖北省 武汉市 洪山区 东湖新技术开发区锦程街68号",
+      "source": "Amap"
+    },
+    "destination": {
+      "id": "B001B0JDH8",
+      "name": "汉口站",
+      "location": "114.254807,30.618527",
+      "city": "武汉市",
+      "address": "湖北省 武汉市 江汉区 发展大道185号",
+      "source": "Amap"
+    }
+  },
+  "requirements": {
+    "origin": "中国地质大学(未来城校区)",
+    "destination": "汉口站",
+    "city": "武汉市",
+    "date": "2026-10-17",
+    "timezone": "Asia/Shanghai",
+    "depart_at": "09:00:00",
+    "arrive_by": null,
+    "budget": 50.0,
+    "max_walk_m": 1500.0,
+    "max_transfers": 2,
+    "modes": [
+      "transit",
+      "walking",
+      "driving"
+    ],
+    "hard_constraints": [
+      "budget",
+      "max_walk_m",
+      "max_transfers",
+      "arrive_by",
+      "modes"
+    ],
+    "preferences": [
+      "fastest"
+    ]
+  },
+  "result_type": "trip_plan",
+  "route_counts": {
+    "transit": 5,
+    "driving": 3,
+    "walking": 1
+  },
+  "routes": [
+    {
+      "id": "transit-0",
+      "mode": "transit",
+      "duration_s": 7555.0,
+      "distance_m": 49807.0,
+      "walk_m": 1207.0,
+      "transfers": 2,
+      "cost_yuan": 11.0,
+      "tolls_yuan": null,
+      "feasibility": "satisfied",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 11.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 1207.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 2,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [],
+      "retrieved_at": "2026-10-16T10:03:47.122816+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "driving-0",
+      "mode": "driving",
+      "duration_s": 6897.0,
+      "distance_m": 53269.0,
+      "walk_m": null,
+      "transfers": 0,
+      "cost_yuan": null,
+      "tolls_yuan": 14.0,
+      "feasibility": "unknown",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [
+        "walk_m",
+        "cost_yuan"
+      ],
+      "retrieved_at": "2026-10-16T10:03:56.920427+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "driving-1",
+      "mode": "driving",
+      "duration_s": 7252.0,
+      "distance_m": 52099.0,
+      "walk_m": null,
+      "transfers": 0,
+      "cost_yuan": null,
+      "tolls_yuan": 11.0,
+      "feasibility": "unknown",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [
+        "walk_m",
+        "cost_yuan"
+      ],
+      "retrieved_at": "2026-10-16T10:03:56.920427+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "driving-2",
+      "mode": "driving",
+      "duration_s": 8554.0,
+      "distance_m": 50006.0,
+      "walk_m": null,
+      "transfers": 0,
+      "cost_yuan": null,
+      "tolls_yuan": 0.0,
+      "feasibility": "unknown",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [
+        "walk_m",
+        "cost_yuan"
+      ],
+      "retrieved_at": "2026-10-16T10:03:56.920427+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "transit-1",
+      "mode": "transit",
+      "duration_s": 7852.0,
+      "distance_m": 49532.0,
+      "walk_m": 1914.0,
+      "transfers": 2,
+      "cost_yuan": 10.5,
+      "tolls_yuan": null,
+      "feasibility": "violated",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 10.5,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 1914.0,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 2,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [],
+      "retrieved_at": "2026-10-16T10:03:47.122816+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "transit-2",
+      "mode": "transit",
+      "duration_s": 9431.0,
+      "distance_m": 48347.0,
+      "walk_m": 2935.0,
+      "transfers": 2,
+      "cost_yuan": 9.5,
+      "tolls_yuan": null,
+      "feasibility": "violated",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 9.5,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 2935.0,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 2,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [],
+      "retrieved_at": "2026-10-16T10:03:47.122816+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "transit-3",
+      "mode": "transit",
+      "duration_s": 9834.0,
+      "distance_m": 50890.0,
+      "walk_m": 2572.0,
+      "transfers": 2,
+      "cost_yuan": 10.0,
+      "tolls_yuan": null,
+      "feasibility": "violated",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 10.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 2572.0,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 2,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [],
+      "retrieved_at": "2026-10-16T10:03:47.122816+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "transit-4",
+      "mode": "transit",
+      "duration_s": 12116.0,
+      "distance_m": 51176.0,
+      "walk_m": 1385.0,
+      "transfers": 3,
+      "cost_yuan": 9.0,
+      "tolls_yuan": null,
+      "feasibility": "violated",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 9.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 1385.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 3,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [],
+      "retrieved_at": "2026-10-16T10:03:47.122816+00:00",
+      "source": "Amap Web Service"
+    },
+    {
+      "id": "walking-0",
+      "mode": "walking",
+      "duration_s": 37564.0,
+      "distance_m": 46955.0,
+      "walk_m": 46955.0,
+      "transfers": 0,
+      "cost_yuan": 0,
+      "tolls_yuan": null,
+      "feasibility": "violated",
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 46955.0,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "missing_fields": [],
+      "retrieved_at": "2026-10-16T10:03:52.022674+00:00",
+      "source": "Amap Web Service"
+    }
+  ],
+  "evidence": [
+    {
+      "citation_id": 1,
+      "doc_id": "cug_future_metro_access",
+      "claim": "中国地质大学（武汉）官网校园导游将地铁11号线未来三路站C出口列为步行到未来城校区的到访路径。",
+      "title": "地大未来城校区地铁到访提示",
+      "source": "https://www.cug.edu.cn/xxgk/xydy.htm",
+      "chunk_id": "10925b9e0a49636f",
+      "metadata": {
+        "doc_id": "cug_future_metro_access",
+        "title": "地大未来城校区地铁到访提示",
+        "city": "武汉市",
+        "facility": "未来城",
+        "audience": "passenger",
+        "data_kind": "real",
+        "source_url": "https://www.cug.edu.cn/xxgk/xydy.htm",
+        "valid_from": "",
+        "valid_until": "",
+        "verified_at": "2026-10-16",
+        "version": "official-page-20261016",
+        "sha256": "753fcde797fb26191dbab5cbcdfe2fa7b9cad1461999771b65db604defd5dff0",
+        "path": "D:\\A1\\简历\\urban-mobility-rag-agent\\data\\knowledge_base\\cug_future_metro_access.md",
+        "source_type": "md",
+        "chunk_index": 0
+      },
+      "scope_note": "仅为设施资料补充；未与路线几何完成空间匹配。"
+    }
+  ],
+  "tools": [
+    {
+      "tool": "routes_transit",
+      "status": "ok",
+      "elapsed_ms": 6172
+    },
+    {
+      "tool": "routes_walking",
+      "status": "ok",
+      "elapsed_ms": 4906
+    },
+    {
+      "tool": "routes_driving",
+      "status": "ok",
+      "elapsed_ms": 4891
+    },
+    {
+      "tool": "knowledge",
+      "status": "ok",
+      "elapsed_ms": 0
+    }
+  ],
+  "checks": {
+    "poi_disambiguation": "verified in browser",
+    "budget_30_to_50_preserves_origin_walk_and_transfers": true,
+    "legacy_geocode": "live successful",
+    "walking_transit_driving": "live successful",
+    "static_map": "live PNG through server proxy; key absent from browser URL",
+    "js_sdk": "not tested; no JS API key",
+    "llm": "not tested; not configured",
+    "milvus": "contract tests only; not connected"
+  }
+}

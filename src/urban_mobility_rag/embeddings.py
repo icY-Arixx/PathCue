@@ -57,6 +57,14 @@ class Model2VecEmbeddingProvider:
             local_model.parent.mkdir(parents=True, exist_ok=True)
             self.model.save_pretrained(local_model)
         self.model_name = model_name
+        digest = hashlib.sha256()
+        for path in sorted(local_model.rglob("*")):
+            if path.is_file():
+                digest.update(path.relative_to(local_model).as_posix().encode())
+                with path.open("rb") as stream:
+                    for block in iter(lambda: stream.read(1024 * 1024), b""):
+                        digest.update(block)
+        self.revision = digest.hexdigest()
         self.dimensions = int(self.model.dim)
 
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
@@ -83,8 +91,8 @@ class OpenAICompatibleEmbeddingProvider:
         with urllib.request.urlopen(request, timeout=30) as response:
             data = json.loads(response.read())
         vectors = [item["embedding"] for item in sorted(data["data"], key=lambda item: item["index"])]
-        if vectors:
-            self.dimensions = len(vectors[0])
+        if len(vectors) != len(texts) or any(len(v) != self.dimensions for v in vectors):
+            raise ValueError("Embedding API dimensions/count differs from EMBEDDING_DIMENSIONS; use a new index directory with the correct model configuration")
         return vectors
 
     def embed_query(self, text: str) -> list[float]:

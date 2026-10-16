@@ -1,0 +1,527 @@
+{
+  "verified_at": "2026-10-16T11:04:51.979255+00:00",
+  "mode": "LIVE AMAP - not fixtures",
+  "sample_date": "2026-10-17",
+  "confirmed": {
+    "origin": {
+      "id": "B0IRHUST7Z",
+      "name": "中国地质大学(武汉)南望山校区",
+      "location": "114.401274,30.522037",
+      "city": "武汉市",
+      "address": "湖北省 武汉市 洪山区 关山街道地大社区鲁磨路388号",
+      "source": "Amap"
+    },
+    "destination": {
+      "id": "B001B0JDH8",
+      "name": "汉口站",
+      "location": "114.254807,30.618527",
+      "city": "武汉市",
+      "address": "湖北省 武汉市 江汉区 发展大道185号",
+      "source": "Amap"
+    }
+  },
+  "requirements": {
+    "origin": "中国地质大学(南望山校区)",
+    "destination": "汉口站",
+    "city": "武汉市",
+    "date": "2026-10-17",
+    "timezone": "Asia/Shanghai",
+    "depart_at": "09:00:00",
+    "arrive_by": null,
+    "budget": 50.0,
+    "max_walk_m": 1500.0,
+    "max_transfers": 2,
+    "modes": [
+      "transit",
+      "walking",
+      "driving"
+    ],
+    "hard_constraints": [
+      "budget",
+      "max_walk_m",
+      "max_transfers",
+      "arrive_by",
+      "modes"
+    ],
+    "preferences": [
+      "fastest"
+    ]
+  },
+  "routes": [
+    {
+      "id": "transit-1",
+      "mode": "transit",
+      "duration_s": 4786.0,
+      "distance_m": 25440.0,
+      "walk_m": 816.0,
+      "transfers": 1,
+      "cost_yuan": 7.0,
+      "tolls_yuan": null,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:01.579791+00:00",
+      "missing_fields": [],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 7.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 816.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 1,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "satisfied"
+    },
+    {
+      "id": "transit-2",
+      "mode": "transit",
+      "duration_s": 4786.0,
+      "distance_m": 25414.0,
+      "walk_m": 1030.0,
+      "transfers": 1,
+      "cost_yuan": 8.0,
+      "tolls_yuan": null,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:01.579791+00:00",
+      "missing_fields": [],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 8.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 1030.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 1,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "satisfied"
+    },
+    {
+      "id": "transit-3",
+      "mode": "transit",
+      "duration_s": 4934.0,
+      "distance_m": 24922.0,
+      "walk_m": 811.0,
+      "transfers": 1,
+      "cost_yuan": 8.0,
+      "tolls_yuan": null,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:01.579791+00:00",
+      "missing_fields": [],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 8.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 811.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 1,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "satisfied"
+    },
+    {
+      "id": "transit-4",
+      "mode": "transit",
+      "duration_s": 5212.0,
+      "distance_m": 28669.0,
+      "walk_m": 833.0,
+      "transfers": 1,
+      "cost_yuan": 8.0,
+      "tolls_yuan": null,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:01.579791+00:00",
+      "missing_fields": [],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 8.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 833.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 1,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "satisfied"
+    },
+    {
+      "id": "driving-1",
+      "mode": "driving",
+      "duration_s": 4969.0,
+      "distance_m": 25763.0,
+      "walk_m": null,
+      "transfers": 0,
+      "cost_yuan": null,
+      "tolls_yuan": 0.0,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:12.554932+00:00",
+      "missing_fields": [
+        "walk_m",
+        "cost_yuan"
+      ],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。",
+        "通行费不是打车费用；油费、停车费及接驳步行未知。",
+        "步行和驾车接口不按所选日期与时间预测交通情况。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "unknown"
+    },
+    {
+      "id": "driving-2",
+      "mode": "driving",
+      "duration_s": 5086.0,
+      "distance_m": 23962.0,
+      "walk_m": null,
+      "transfers": 0,
+      "cost_yuan": null,
+      "tolls_yuan": 0.0,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:12.554932+00:00",
+      "missing_fields": [
+        "walk_m",
+        "cost_yuan"
+      ],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。",
+        "通行费不是打车费用；油费、停车费及接驳步行未知。",
+        "步行和驾车接口不按所选日期与时间预测交通情况。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "unknown"
+    },
+    {
+      "id": "driving-0",
+      "mode": "driving",
+      "duration_s": 5632.0,
+      "distance_m": 25633.0,
+      "walk_m": null,
+      "transfers": 0,
+      "cost_yuan": null,
+      "tolls_yuan": 0.0,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:12.554932+00:00",
+      "missing_fields": [
+        "walk_m",
+        "cost_yuan"
+      ],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。",
+        "通行费不是打车费用；油费、停车费及接驳步行未知。",
+        "步行和驾车接口不按所选日期与时间预测交通情况。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": null,
+          "status": "unknown",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "unknown"
+    },
+    {
+      "id": "transit-0",
+      "mode": "transit",
+      "duration_s": 5162.0,
+      "distance_m": 25401.0,
+      "walk_m": 2248.0,
+      "transfers": 0,
+      "cost_yuan": 6.0,
+      "tolls_yuan": null,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:01.579791+00:00",
+      "missing_fields": [],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 6.0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 2248.0,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "violated"
+    },
+    {
+      "id": "walking-0",
+      "mode": "walking",
+      "duration_s": 19102.0,
+      "distance_m": 23877.0,
+      "walk_m": 23877.0,
+      "transfers": 0,
+      "cost_yuan": 0,
+      "tolls_yuan": null,
+      "source": "Amap Web Service",
+      "retrieved_at": "2026-10-16T10:34:07.672197+00:00",
+      "missing_fields": [],
+      "assumptions": [
+        "耗时为预计值，不保证按时到达。",
+        "步行和驾车接口不按所选日期与时间预测交通情况。"
+      ],
+      "checks": [
+        {
+          "field": "budget",
+          "limit": 50.0,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "max_walk_m",
+          "limit": 1500.0,
+          "actual": 23877.0,
+          "status": "violated",
+          "hard": true
+        },
+        {
+          "field": "max_transfers",
+          "limit": 2,
+          "actual": 0,
+          "status": "satisfied",
+          "hard": true
+        },
+        {
+          "field": "modes",
+          "status": "satisfied",
+          "hard": true
+        }
+      ],
+      "feasibility": "violated"
+    }
+  ],
+  "evidence": [
+    {
+      "citation_id": 1,
+      "doc_id": "cug_nanwang_gate_access",
+      "claim": "南望山校区的人行闸机全天通行，但仍须完成刷脸或来访人员身份证核验；",
+      "title": "地大南望山校区校门通行提醒",
+      "source": "https://safeguard.cug.edu.cn/info/1016/17071.htm",
+      "chunk_id": "a2db18ca880eabac",
+      "scope_note": "设施资料补充；尚未核实本方案经过的具体入口或站口。",
+      "metadata": {
+        "doc_id": "cug_nanwang_gate_access",
+        "title": "地大南望山校区校门通行提醒",
+        "city": "武汉市",
+        "facility": "南望山校区",
+        "facility_area": "南望山校区人行闸机",
+        "audience": "passenger",
+        "data_kind": "real",
+        "source_url": "https://safeguard.cug.edu.cn/info/1016/17071.htm",
+        "valid_from": "2026-05-11",
+        "valid_until": "",
+        "verified_at": "2026-10-16",
+        "version": "safeguard-20260511-checked-20261016",
+        "source_type": "md"
+      }
+    }
+  ],
+  "weather": {
+    "status": "ok",
+    "kind": "forecast",
+    "city": "武汉市",
+    "date": "2026-10-17",
+    "source": "高德天气",
+    "source_url": "https://lbs.amap.com/api/webservice/guide/api/weatherinfo",
+    "report_time": "2026-10-16 18:32:09",
+    "retrieved_at": "2026-10-16T18:58:57.474025+08:00",
+    "scope_note": "城市或区县级资料，不代表整条路线或具体出发时刻的天气；预报存在不确定性。",
+    "day_condition": "小雨",
+    "night_condition": "中雨",
+    "high_c": "31",
+    "low_c": "17",
+    "rain_expected": true,
+    "message": "天气资料含降雨描述，建议备伞；这不代表具体时刻一定下雨。"
+  },
+  "checks": {
+    "poi_disambiguation": "verified in browser",
+    "budget_30_to_50_preserves_origin_walk_and_transfers": true,
+    "walking_transit_driving": "live successful",
+    "static_map": "live PNG through server proxy; key absent from browser URL",
+    "knowledge_followup": "day and hypothetical night gate queries retained 9 routes; official source shown",
+    "weather": "live city/date forecast; retained 9 routes",
+    "js_sdk": "not tested; no JS key",
+    "llm": "not configured; tool calling contract tests only",
+    "milvus": "contract tests only; not connected"
+  }
+}

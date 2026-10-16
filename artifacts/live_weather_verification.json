@@ -1,0 +1,28 @@
+{
+  "mode": "LIVE AMAP - not fixture",
+  "weather": {
+    "status": "ok",
+    "kind": "forecast",
+    "city": "武汉市",
+    "date": "2026-10-17",
+    "source": "高德天气",
+    "source_url": "https://lbs.amap.com/api/webservice/guide/api/weatherinfo",
+    "report_time": "2026-10-16 18:32:09",
+    "retrieved_at": "2026-10-16T18:58:57.474025+08:00",
+    "scope_note": "城市或区县级资料，不代表整条路线或具体出发时刻的天气；预报存在不确定性。",
+    "day_condition": "小雨",
+    "night_condition": "中雨",
+    "high_c": "31",
+    "low_c": "17",
+    "rain_expected": true,
+    "message": "天气资料含降雨描述，建议备伞；这不代表具体时刻一定下雨。"
+  },
+  "routes_preserved": 9,
+  "tools": [
+    {
+      "tool": "lookup_weather",
+      "status": "ok",
+      "elapsed_ms": 12922
+    }
+  ]
+}

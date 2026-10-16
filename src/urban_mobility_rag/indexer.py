@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-import json
 import hashlib
-from dataclasses import asdict, dataclass
+import json
+import shutil
+from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .chunking import MetadataAwareChunker
@@ -20,7 +22,15 @@ class IndexReport:
 
 
 class KnowledgeBaseIndexer:
-    def __init__(self, knowledge_dir: Path, manifest_path: Path, store, embeddings: EmbeddingProvider, chunker: MetadataAwareChunker, secondary_store=None):
+    def __init__(
+        self,
+        knowledge_dir: Path,
+        manifest_path: Path,
+        store,
+        embeddings: EmbeddingProvider,
+        chunker: MetadataAwareChunker,
+        secondary_store=None,
+    ):
         self.knowledge_dir = knowledge_dir
         self.manifest_path = manifest_path
         self.store = store
@@ -35,6 +45,13 @@ class KnowledgeBaseIndexer:
 
     def run(self) -> IndexReport:
         previous = self._load_manifest()
+        # Preserve a recoverable snapshot before replacing any existing local index.
+        if previous:
+            backup = self.manifest_path.parent / "backups" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%f")
+            backup.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(self.manifest_path, backup / self.manifest_path.name)
+            if self.store.path.exists():
+                shutil.copy2(self.store.path, backup / self.store.path.name)
         current: dict[str, str] = {}
         report = IndexReport()
         store_identity = type(self.secondary_store or self.store).__name__
@@ -45,6 +62,9 @@ class KnowledgeBaseIndexer:
             fingerprint_source = (
                 f"{digest}:{self.chunker.chunk_size}:{self.chunker.chunk_overlap}:"
                 f"{type(self.embeddings).__name__}:{self.embeddings.dimensions}:"
+                f"{getattr(self.embeddings, 'model_name', getattr(self.embeddings, 'model', 'hash-v1'))}:"
+                f"{getattr(self.embeddings, 'revision', 'v1')}:{json.dumps(document.metadata, sort_keys=True, ensure_ascii=False)}:"
+                f"{getattr(self.embeddings, 'base_url', '')}:"
                 f"{store_identity}:{collection_name}"
             )
             fingerprint = hashlib.sha256(fingerprint_source.encode("utf-8")).hexdigest()
@@ -52,13 +72,15 @@ class KnowledgeBaseIndexer:
             if previous.get(document.doc_id) == fingerprint:
                 report.unchanged_documents += 1
                 continue
+            chunks = self.chunker.split(document)
+            vectors = self.embeddings.embed_documents([chunk.text for chunk in chunks])
+            if len(vectors) != len(chunks) or any(len(v) != self.embeddings.dimensions for v in vectors):
+                raise ValueError("Embedding dimensions/count mismatch; index snapshot preserved")
+            for chunk, vector in zip(chunks, vectors):
+                chunk.vector = vector
             self.store.delete_document(document.doc_id)
             if self.secondary_store is not None:
                 self.secondary_store.delete_document(document.doc_id)
-            chunks = self.chunker.split(document)
-            vectors = self.embeddings.embed_documents([chunk.text for chunk in chunks])
-            for chunk, vector in zip(chunks, vectors):
-                chunk.vector = vector
             self.store.upsert(chunks)
             if self.secondary_store is not None:
                 self.secondary_store.upsert(chunks)

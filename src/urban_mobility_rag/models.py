@@ -4,6 +4,14 @@ from dataclasses import asdict, dataclass, field
 from typing import Any
 
 
+def number(value):
+    try:
+        result = float(value)
+        return result if result >= 0 and result < float("inf") else None
+    except (TypeError, ValueError):
+        return None
+
+
 @dataclass(slots=True)
 class SourceDocument:
     doc_id: str

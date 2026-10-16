@@ -4,5 +4,11 @@
   "city": "武汉",
   "category": "公共交通",
   "updated_at": "2026-09-11",
-  "authority": "demo"
+  "authority": "demo",
+  "audience": "passenger",
+  "data_kind": "demo",
+  "version": "legacy-2026-09",
+  "verified_at": "",
+  "valid_from": "",
+  "valid_until": ""
 }
